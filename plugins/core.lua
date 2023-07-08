@@ -22,17 +22,23 @@ return {
       return opts
     end,
   },
+  { -- You can disable default plugins as follows:
+    "rcarriga/nvim-notify", -- { "max397574/better-escape.nvim", enabled = false },
+    config = function(plugin, opts) --
+      require "plugins.configs.notify"(plugin, opts) -- include the default astronvim config that calls the setup call   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
+      -- add more custom luasnip configuration such as filetype extend or custom snippets                                 -- {
+      local notify = require "notify" --   "L3MON4D3/LuaSnip",
+      notify.setup {
+        render = "compact",
+        stages = "slide",
+        max_width = 60,
+        top_down = false,
+        fps = 30,
+      }
+    end, --     require "plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
+  }, --     -- add more custom luasnip configuration such as filetype extend or custom snippets
 
-  -- You can disable default plugins as follows:
-  -- { "max397574/better-escape.nvim", enabled = false },
-  --
-  -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   config = function(plugin, opts)
-  --     require "plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-  --     -- add more custom luasnip configuration such as filetype extend or custom snippets
-  --     local luasnip = require "luasnip"
+  -- {                                                                                                                       --     local luasnip = require "luasnip"
   --     luasnip.filetype_extend("javascript", { "javascriptreact" })
   --   end,
   -- },

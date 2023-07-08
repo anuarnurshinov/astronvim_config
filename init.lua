@@ -27,6 +27,9 @@ local config = {
     setup_handlers = {
       -- add custom handler
       tsserver = function(_, opts) require("typescript").setup { server = opts } end,
+
+      denols = function(_, opts) require("deno-nvim").setup { server = opts } end,
+
       jdtls = function(_, opts)
         vim.api.nvim_create_autocmd("Filetype", {
           pattern = "java", -- autocmd to start jdtls
@@ -37,6 +40,14 @@ local config = {
       end,
     },
     config = {
+      denols = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+        return opts
+      end,
+      tsserver = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern "package.json"
+        return opts
+      end,
       -- set jdtls server settings
       jdtls = function()
         -- use this function notation to build some variables
