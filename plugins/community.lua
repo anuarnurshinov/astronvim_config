@@ -5,7 +5,8 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
   -- { import = "astrocommunity.colorscheme.catppuccin" },
-   { import = "astrocommunity.lsp.inc-rename-nvim" },
-   { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
-   { import = "astrocommunity.scrolling.vim-smoothie" },
-  }
+  { import = "astrocommunity.lsp.inc-rename-nvim" },
+  { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+  { import = "astrocommunity.scrolling.vim-smoothie" },
+  { import = "astrocommunity.code-runner.compiler-nvim" },
+}

@@ -120,7 +120,6 @@ local config = {
       -- "pyright"
     },
   },
-  plugins = {},
   -- Configure require("lazy").setup() options
   lazy = {
     defaults = { lazy = true },

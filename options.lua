@@ -19,6 +19,7 @@ return {
     resession_enabled = false, -- enable experimental resession.nvim session management (will be default in AstroNvim v4)
   },
 }
+
 -- If you need more control, you can use the function()...end notation
 -- return function(local_vim)
 --   local_vim.opt.relativenumber = true
