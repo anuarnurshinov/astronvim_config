@@ -28,22 +28,25 @@ local config = {
       -- add custom handler
       tsserver = function(_, opts) require("typescript").setup { server = opts } end,
 
-      denols = function(_, opts) require("deno-nvim").setup { server = opts } end,
+      -- denols = function(_, opts) require("deno-nvim").setup { server = opts } end,
 
       jdtls = function(_, opts)
         vim.api.nvim_create_autocmd("Filetype", {
           pattern = "java", -- autocmd to start jdtls
           callback = function()
-            if opts.root_dir and opts.root_dir ~= "" then require("jdtls").start_or_attach(opts) end
+            if opts.root_dir and opts.root_dir ~= "" then
+              require("jdtls").setup_dap { hotcodereplace = "auto" }
+              require("jdtls").start_or_attach(opts)
+            end
           end,
         })
       end,
     },
     config = {
-      denols = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        return opts
-      end,
+      --denols = function(opts)
+      --  opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+      --  return opts
+      --end,
       tsserver = function(opts)
         opts.root_dir = require("lspconfig.util").root_pattern "package.json"
         return opts
@@ -67,7 +70,7 @@ local config = {
 
         -- get the mason install path
         local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
-
+        local dap_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
         -- get the current OS
         local os
         if vim.fn.has "macunix" then
@@ -77,7 +80,6 @@ local config = {
         else
           os = "linux"
         end
-
         -- return the server config
         return {
           cmd = {
@@ -102,6 +104,11 @@ local config = {
             workspace_dir,
           },
           root_dir = root_dir,
+          init_options = {
+            bundles = {
+              vim.fn.glob(dap_path .. "/extension/server/com.microsoft.java.debug.plugin-0.47.0.jar", true),
+            },
+          },
         }
       end,
     },

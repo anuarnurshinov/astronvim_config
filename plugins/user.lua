@@ -21,15 +21,15 @@ return {
       },
     },
   },
-  {
-    "sigmasd/deno-nvim", -- add lsp plugin
-    {
-      "williamboman/mason-lspconfig.nvim",
-      opts = {
-        ensure_installed = { "denols" }, -- automatically install lsp
-      },
-    },
-  },
+  -- {
+  --   "sigmasd/deno-nvim", -- add lsp plugin
+  --   {
+  --     "williamboman/mason-lspconfig.nvim",
+  --     opts = {
+  --       ensure_installed = { "denols" }, -- automatically install lsp
+  --     },
+  --   },
+  -- },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
