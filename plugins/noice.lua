@@ -1,6 +1,6 @@
 local opts = {
   messages = {
-    enabled = false,
+    enabled = true,
   },
   notify = {
     enabled = true,
@@ -12,6 +12,9 @@ local opts = {
     },
     signature = {
       enabled = false,
+      auto_open = {
+        enabled = false,
+      },
     },
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {

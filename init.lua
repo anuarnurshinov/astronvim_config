@@ -41,6 +41,14 @@ local config = {
           end,
         })
       end,
+      tailwindcss = function(_, opts)
+        vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "typescriptreact", -- autocmd to start jdtls
+          callback = function()
+            if opts.root_dir and opts.root_dir ~= "" then require("lspconfig")["tailwindcss"].setup {} end
+          end,
+        })
+      end,
     },
     config = {
       --denols = function(opts)
