@@ -37,4 +37,7 @@ return {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
   },
+  i = {
+    ["<C-a>"] = { "<C-o>A", desc = "Обойти скобки" },
+  },
 }
