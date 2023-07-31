@@ -8,7 +8,12 @@ return {
   n = {
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
-    ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+    ["<leader>bt"] = { name = "Tabs" },
+    ["<leader>btn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+    ["<leader>btN"] = { "<cmd>tabNext<cr>", desc = "Next tab" },
+    ["<leader>btc"] = { "<cmd>tabclose<cr>", desc = "Close tab" },
+    ["<leader>lc"] = { "<cmd>CompilerOpen<cr>", desc = "Code Runner Compiler" },
+
     ["<leader>bD"] = {
       function()
         require("astronvim.utils.status").heirline.buffer_picker(
