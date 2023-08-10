@@ -43,7 +43,7 @@ local config = {
       end,
       tailwindcss = function(_, opts)
         vim.api.nvim_create_autocmd("Filetype", {
-          pattern = "typescriptreact", -- autocmd to start jdtls
+          pattern = "scss,typescriptreact", -- autocmd to start jdtls
           callback = function()
             if opts.root_dir and opts.root_dir ~= "" then require("lspconfig")["tailwindcss"].setup {} end
           end,
@@ -74,7 +74,8 @@ local config = {
         -- calculate workspace dir
         local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
         local workspace_dir = vim.fn.stdpath "data" .. "/site/java/workspace-root/" .. project_name
-        os.execute("mkdir " .. workspace_dir)
+
+        if workspace_dir == "" then os.execute("mkdir " .. workspace_dir) end
 
         -- get the mason install path
         local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
