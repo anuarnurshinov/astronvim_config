@@ -42,10 +42,17 @@ local config = {
         })
       end,
       tailwindcss = function(_, opts)
+        local root_markers = {
+          "tailwind.config.js",
+        }
+        local root_dir = require("jdtls.setup").find_root(root_markers)
+
         vim.api.nvim_create_autocmd("Filetype", {
           pattern = "scss,typescriptreact", -- autocmd to start jdtls
           callback = function()
-            if opts.root_dir and opts.root_dir ~= "" then require("lspconfig")["tailwindcss"].setup {} end
+            if opts.root_dir and opts.root_dir ~= "" and root_dir ~= nil then
+              require("lspconfig")["tailwindcss"].setup {}
+            end
           end,
         })
       end,
