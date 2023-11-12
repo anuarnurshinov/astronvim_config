@@ -42,10 +42,7 @@ local config = {
         })
       end,
       tailwindcss = function(_, opts)
-        local root_markers = {
-          "tailwind.config.js",
-        }
-        local root_dir = require("jdtls.setup").find_root(root_markers)
+        local root_dir = require("lspconfig.util").root_pattern "tailwindcss.config.js"
 
         vim.api.nvim_create_autocmd("Filetype", {
           pattern = "scss,typescriptreact", -- autocmd to start jdtls
@@ -58,10 +55,10 @@ local config = {
       end,
     },
     config = {
-      --denols = function(opts)
+      -- denols = function(opts)
       --  opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
       --  return opts
-      --end,
+      -- end,
       tsserver = function(opts)
         opts.root_dir = require("lspconfig.util").root_pattern "package.json"
         return opts
